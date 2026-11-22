@@ -350,7 +350,7 @@ def test_a_retried_analysis_rereads_the_same_forces(tmp_path: Path) -> None:
     write_identity_config({"identities": {"op": {"name": "Op", "email": "op@example.test"}}, "default_identity": "op"})
     ensure_identity_key("op")
     register_workspace("phonons", str(workspace.root))
-    arguments = ["job", "request", "continue", "--workspace", "phonons", "--reason", "outputs back", job.job_id]
+    arguments = ["job", "resume", "--workspace", "phonons", "--reason", "outputs back", job.job_id]
     assert command(arguments, CLIContext("httk", tmp_path)) == 0
     _run(workspace, resources={"procs": 2})
     result = _assert_matches_direct(_succeeded(workspace, job.job_id))

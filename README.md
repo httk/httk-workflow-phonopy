@@ -90,7 +90,7 @@ Scope:
   `phonons.json`, so a retried analysis reads the same values.
 
 Install the plugin from this repository (`httk plugin install .`) or use the
-package directly with `--workflow-dir workflows/phonopy-phonons`.
+package directly with `httk job new workflows/phonopy-phonons`.
 
 ### Binding the forces
 
@@ -109,8 +109,8 @@ absent. The binding passes these `vasp.static` parameters, the ones
 | `incar_tags` | `{"EDIFF": "1E-7", "LREAL": ".FALSE.", "ADDGRID": ".TRUE.", "ISMEAR": 0, "SIGMA": 0.05, "ICHARG": 2}` | Where `vasp.phonons`' `INCAR.phonon` differs from `vasp.static`'s `INCAR.static`: tight `EDIFF`, no real-space projection, the additional grid, Gaussian smearing, a start from atomic charges. |
 
 ```console
-httk job new --install --workflow phonopy.phonons --input structure=POSCAR
-httk workflow run
+httk job new --install phonopy.phonons --input structure=POSCAR
+httk run
 httk collect --into results.sqlite
 ```
 
@@ -126,7 +126,7 @@ workflow), from the *workflows-examples* repository (`httk plugin install` of
 that repository or `httk workflow install`):
 
 ```console
-httk job new --install --workflow phonopy.phonons --input structure=POSCAR \
+httk job new --install phonopy.phonons --input structure=POSCAR \
     --call forces=ase.static --call-parameter forces calculator=ase.calculators.emt:EMT
 ```
 

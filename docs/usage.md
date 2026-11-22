@@ -148,10 +148,10 @@ smearing). `vasp.static` must be installed for that; installing
 them, for example ASE's EMT potential from *workflows-examples*:
 
 ```console
-httk job new --install --workflow phonopy.phonons --input structure=POSCAR
-httk job new --install --workflow phonopy.phonons --input structure=POSCAR \
+httk job new --install phonopy.phonons --input structure=POSCAR
+httk job new --install phonopy.phonons --input structure=POSCAR \
     --call forces=ase.static --call-parameter forces calculator=ase.calculators.emt:EMT
-httk workflow run
+httk run
 httk collect --into results.sqlite
 ```
 
@@ -163,7 +163,7 @@ states and the harmonic thermodynamics. Keeping the displacement children
 numerically consistent (the same k-point mesh, smearing and remedies) is the
 binding's responsibility; the repository README lists the default's settings,
 the parameters and the outputs. Install the workflow with `httk plugin install` of
-the repository, or use it directly with `--workflow-dir`.
+the repository, or use it directly with `httk job new DIR`.
 
 ## Building blocks
 
